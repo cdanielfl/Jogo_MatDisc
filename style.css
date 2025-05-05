@@ -1,28 +1,37 @@
+/* Reset e Estilos Globais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f8ff;
+    background-color: #00498a;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
 }
 
+/* Container Principal */
 #game-container {
-    width: 800px;
-    height: 600px;
-    background-color: #fff;
+    width: 100%;
+    max-width: 800px;
+    height: 700px;
+    background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
     overflow: hidden;
     position: relative;
 }
 
+/* Telas */
 .screen {
     width: 100%;
     height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,75 +43,134 @@ body {
     display: none;
 }
 
-h1 {
-    color: #2c3e50;
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
+/* Estatísticas do Jogo */
+#stats {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     padding: 10px 20px;
-    margin: 10px;
+    background-color: #e6f2ff;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.3s;
+    margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: #2980b9;
+/* Área de Perguntas */
+#question-box {
+    width: 100%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-#question-container {
+#question-text {
     margin-bottom: 30px;
+    color: #2c3e50;
+    font-size: 1.2em;
+    min-height: 60px;
 }
 
 #options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    width: 100%;
 }
 
 .option-btn {
-    background-color: #ecf0f1;
-    color: #2c3e50;
-    padding: 10px;
+    padding: 15px;
+    background-color: #02395e;
+    color: white;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 1em;
 }
 
 .option-btn:hover {
-    background-color: #bdc3c7;
+    background-color: #00498a;
+    
 }
 
-#feedback {
-    margin: 20px 0;
+.option-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Feedback Box */
+.feedback-box {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.feedback-box.correct {
+    background-color: #e8f5e9;
+    border-left: 4px solid #2e7d32;
+}
+
+.feedback-box.incorrect {
+    background-color: #ffebee;
+    border-left: 4px solid #c62828;
+}
+
+.feedback-incorrect {
+    color: #c62828;
     font-weight: bold;
-    min-height: 24px;
+    margin-bottom: 8px;
 }
 
-.correct {
-    color: #27ae60;
+.feedback-correct {
+    color: #2e7d32;
+    line-height: 1.5;
 }
 
-.incorrect {
-    color: #e74c3c;
+/* Navegação */
+#next-btn {
+    background-color: #2ecc71;
+    color: white;
+    padding: 12px 25px;
+    margin-top: 15px;
+    display: none;
 }
 
-#score, #lives {
-    position: absolute;
-    top: 20px;
-    font-size: 1.2em;
+#next-btn.visible {
+    display: block;
 }
 
-#score {
-    left: 20px;
+/* Telas Específicas */
+#menu-screen h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
 }
 
-#lives {
-    right: 20px;
+#tutorial-screen .tutorial-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    #game-container {
+        height: auto;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+    
+    .screen {
+        padding: 20px;
+    }
+    
+    #options-container {
+        grid-template-columns: 1fr;
+    }
 }
